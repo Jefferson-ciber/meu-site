@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CTF Site - Home</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/style2.css">
+</head>
+<body>
+  <header>
+    <h1>CTF Site</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="rank.html">Rank</a></li>
+        <li><a href="Desafios.html">Challenges</a></li>
+        <li><a href="store.html">Store</a></li>
+        <li><a href="VIP.html">VIP</a></li>
+        <li><a href="Subscription.html">Subscription</a></li>
+        <li><a href="sobre nos.html">Sobre</a></li>
+      </ul>
+    </nav>
+    <div class="user-menu">
+      <button class="user-menu-button">
+        <img src="/a/1410b694-e968-4832-bc74-256680f869b2" alt="Profile picture" width="40" height="40">
+        <span>Someone Famous</span>
+        <span class="vip-badge">VIP</span>
+      </button>
+      <div class="user-menu-content">
+        <a href="https://websim.ctfsite.com/profile">My Profile</a>
+        <a href="https://websim.ctfsite.com/edit-profile">Edit Profile</a>
+        <a href="https://websim.ctfsite.com/inbox">Inbox</a>
+        <a href="https://websim.ctfsite.com/settings">Settings</a>
+        <a href="https://websim.ctfsite.com/help">Help</a>
+        <a href="https://websim.ctfsite.com/logout">Logout</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h2>Welcome to CTF Site</h2>
+      <p>Test your hacking skills, compete with others, and become a cybersecurity expert!</p>
+      <a href="https://websim.ctfsite.com/challenges" class="cta-button">Start Hacking</a>
+    </section>
+
+    <section class="features">
+      <div class="feature">
+        <div class="feature-icon">🚩</div>
+        <h3>Capture The Flag</h3>
+        <p>Solve challenging puzzles and find hidden flags to earn points and climb the leaderboard.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🏆</div>
+        <h3>Competitive Ranking</h3>
+        <p>Compete against hackers from around the world and prove your skills in our global rankings.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">📚</div>
+        <h3>Learn & Improve</h3>
+        <p>Access a wide range of challenges designed to help you learn new techniques and improve your skills.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🛒</div>
+        <h3>CTF Store</h3>
+        <p>Purchase exclusive tools, hints, and cosmetic items to enhance your hacking experience.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">👑</div>
+        <h3>VIP Membership</h3>
+        <p>Unlock premium features, exclusive challenges, and special events with our VIP membership.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🔄</div>
+        <h3>Subscription</h3>
+        <p>Get access to a continuously updated stream of new challenges and learning materials.</p>
+      </div>
+    </section>
+
+    <section class="leaderboard">
+      <h2>Top Hackers</h2>
+      <ul class="leaderboard-list">
+        <li class="leaderboard-item">
+          <span>1. H4ck3r_Pr0</span>
+          <span>9500 pts</span>
+        </li>
+        <li class="leaderboard-item">
+          <span>2. ByteMaster</span>
+          <span>9200 pts</span>
+        </li>
+        <li class="leaderboard-item">
+          <span>3. CyberNinja</span>
+          <span>8800 pts</span>
+        </li>
+        <li class="leaderboard-item">
+          <span>4. CodeBreaker</span>
+          <span>8500 pts</span>
+        </li>
+        <li class="leaderboard-item">
+          <span>5. EncryptQueen</span>
+          <span>8200 pts</span>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Add hover effect to nav items
+      const navItems = document.querySelectorAll('nav ul li a');
+      navItems.forEach(item => {
+        item.addEventListener('mouseenter', () => {
+          item.style.textShadow = '0 0 10px #64ffda';
+        });
+        item.addEventListener('mouseleave', () => {
+          item.style.textShadow = 'none';
+        });
+      });
+
+      // Animate features on scroll
+      const features = document.querySelectorAll('.feature');
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+      };
+
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      features.forEach(feature => {
+        feature.style.opacity = '0';
+        feature.style.transform = 'translateY(20px)';
+        feature.style.transition = 'opacity 0.5s ease-out, transform 0.5s ease-out';
+        observer.observe(feature);
+      });
+
+      // Add pulsing effect to CTA button
+      const ctaButton = document.querySelector('.cta-button');
+      setInterval(() => {
+        ctaButton.style.transform = 'scale(1.05)';
+        setTimeout(() => {
+          ctaButton.style.transform = 'scale(1)';
+        }, 200);
+      }, 2000);
+    });
+  </script>
+</body></html>
