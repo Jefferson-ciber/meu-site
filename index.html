@@ -1,156 +1,398 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
+<html><head><base href="https://websim.ctfsite.com/">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CTF Site - Home</title>
-  <link rel="stylesheet" href="https://github.com/Jefferson-ciber/meu-site/blob/main/styles.css">
-  <link rel="stylesheet" href="css/style2.css">
-</head>
-<body>
-  <header>
-    <h1>CTF Site</h1>
-    <nav>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="rank.html">Rank</a></li>
-        <li><a href="Desafios.html">Challenges</a></li>
-        <li><a href="store.html">Store</a></li>
-        <li><a href="VIP.html">VIP</a></li>
-        <li><a href="Subscription.html">Subscription</a></li>
-        <li><a href="sobre nos.html">Sobre</a></li>
-      </ul>
-    </nav>
-    <div class="user-menu">
-      <button class="user-menu-button">
-        <img src="/a/1410b694-e968-4832-bc74-256680f869b2" alt="Profile picture" width="40" height="40">
-        <span>Someone Famous</span>
-        <span class="vip-badge">VIP</span>
-      </button>
-      <div class="user-menu-content">
-        <a href="https://websim.ctfsite.com/profile">My Profile</a>
-        <a href="https://websim.ctfsite.com/edit-profile">Edit Profile</a>
-        <a href="https://websim.ctfsite.com/inbox">Inbox</a>
-        <a href="https://websim.ctfsite.com/settings">Settings</a>
-        <a href="https://websim.ctfsite.com/help">Help</a>
-        <a href="https://websim.ctfsite.com/logout">Logout</a>
+  <title>RED SEC ACADEMY - Treinamento Profissional em Cibersegurança</title>
+  <style>
+    :root {
+      --primary-color: #0A2472;    /* Darker blue */
+      --secondary-color: #1B3B6F;  /* Slightly lighter blue */
+      --accent-color: #BF0603;     /* Vibrant red */
+      --text-color: #333333;       /* Dark gray for text */
+      --background-color: #F5F5F5; /* Light gray background */
+      --white: #FFFFFF;            /* White */
+    }
+  
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Arial', sans-serif;
+    }
+  
+    body {
+      background-color: var(--background-color);
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+  
+    header {
+      background-color: var(--primary-color);
+      color: var(--white);
+      padding: 1rem 0;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+  
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+  
+    .logo-container {
+      display: flex;
+      align-items: center;
+    }
+  
+    .logo {
+      width: 50px;
+      height: 50px;
+      margin-right: 1rem;
+    }
+  
+    h1 {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+  
+    nav ul {
+      display: flex;
+      list-style: none;
+    }
+  
+    nav ul li {
+      margin-left: 1.5rem;
+    }
+  
+    nav ul li a {
+      color: var(--white);
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+  
+    nav ul li a:hover {
+      color: var(--accent-color);
+    }
+  
+    main {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 2rem;
+    }
+  
+    .hero {
+      background-color: var(--secondary-color);
+      color: var(--white);
+      padding: 3rem 2rem;
+      border-radius: 8px;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+  
+    .hero h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+  
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 800px;
+      margin: 0 auto 2rem;
+    }
+  
+    .cta-button {
+      display: inline-block;
+      background-color: var(--accent-color);
+      color: var(--white);
+      padding: 0.75rem 1.5rem;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+  
+    .cta-button:hover {
+      background-color: #A50502; /* Darker red on hover */
+    }
+  
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+  
+    .feature {
+      background-color: var(--white);
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+  
+    .feature:hover {
+      transform: translateY(-5px);
+    }
+  
+    .feature h3 {
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+    }
+  
+    .feature-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: var(--accent-color);
+    }
+  
+    .course-preview {
+      background-color: var(--white);
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      margin-bottom: 2rem;
+    }
+  
+    .course-preview h2 {
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+      font-size: 2rem;
+    }
+  
+    .course-list {
+      list-style: none;
+    }
+  
+    .course-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+      border-bottom: 1px solid #e0e0e0;
+    }
+  
+    .course-item:last-child {
+      border-bottom: none;
+    }
+  
+    .course-item h4 {
+      font-size: 1.2rem;
+      color: var(--secondary-color);
+    }
+  
+    .course-item p {
+      color: var(--text-color);
+      font-size: 0.9rem;
+    }
+  
+    .enroll-button {
+      background-color: var(--secondary-color);
+      color: var(--white);
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+  
+    .enroll-button:hover {
+      background-color: var(--primary-color);
+    }
+  
+    .user-menu {
+      position: relative;
+    }
+  
+    .user-menu-button {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      border: none;
+      background: none;
+      color: var(--white);
+    }
+  
+    .user-menu-button img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin-right: 0.5rem;
+    }
+  
+    .user-menu-content {
+      display: none;
+      position: absolute;
+      right: 0;
+      top: 100%;
+      background-color: var(--white);
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      z-index: 1000;
+    }
+  
+    .user-menu-content a {
+      display: block;
+      padding: 0.75rem 1rem;
+      color: var(--text-color);
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+  
+    .user-menu-content a:hover {
+      background-color: #f0f0f0;
+    }
+  
+    .user-menu:hover .user-menu-content {
+      display: block;
+    }
+  </style>
+  </head>
+  <body>
+    <header>
+      <div class="header-content">
+        <div class="logo-container">
+          <img src="/a/a6984205-afd9-487c-be9d-030abb89187c" alt="Logo da RED SEC ACADEMY" class="logo" width="50" height="50">
+          <h1>RED SEC ACADEMY</h1>
+        </div>
+        <nav>
+          <ul>
+            <li><a href="https://websim.ctfsite.com/">Início</a></li>
+            <li><a href="https://websim.ctfsite.com/courses">Cursos</a></li>
+            <li><a href="https://websim.ctfsite.com/challenges">Desafios</a></li>
+            <li><a href="https://websim.ctfsite.com/about">Sobre</a></li>
+            <li><a href="https://websim.ctfsite.com/contact">Contato</a></li>
+          </ul>
+        </nav>
+        <div class="user-menu">
+          <button class="user-menu-button">
+            <img src="/a/1410b694-e968-4832-bc74-256680f869b2" alt="Foto de perfil" width="40" height="40">
+            <span>Alguém Famoso</span>
+          </button>
+          <div class="user-menu-content">
+            <a href="https://websim.ctfsite.com/profile">Meu Perfil</a>
+            <a href="https://websim.ctfsite.com/edit-profile">Editar Perfil</a>
+            <a href="https://websim.ctfsite.com/inbox">Caixa de Entrada</a>
+            <a href="https://websim.ctfsite.com/settings">Configurações</a>
+            <a href="https://websim.ctfsite.com/help">Ajuda</a>
+            <a href="https://websim.ctfsite.com/logout">Sair</a>
+          </div>
+        </div>
       </div>
-    </div>
-  </header>
-
-  <main>
-    <section class="hero">
-      <h2>Welcome to CTF Site</h2>
-      <p>Test your hacking skills, compete with others, and become a cybersecurity expert!</p>
-      <a href="https://websim.ctfsite.com/challenges" class="cta-button">Start Hacking</a>
-    </section>
-
-    <section class="features">
-      <div class="feature">
-        <div class="feature-icon">🚩</div>
-        <h3>Capture The Flag</h3>
-        <p>Solve challenging puzzles and find hidden flags to earn points and climb the leaderboard.</p>
-      </div>
-      <div class="feature">
-        <div class="feature-icon">🏆</div>
-        <h3>Competitive Ranking</h3>
-        <p>Compete against hackers from around the world and prove your skills in our global rankings.</p>
-      </div>
-      <div class="feature">
-        <div class="feature-icon">📚</div>
-        <h3>Learn & Improve</h3>
-        <p>Access a wide range of challenges designed to help you learn new techniques and improve your skills.</p>
-      </div>
-      <div class="feature">
-        <div class="feature-icon">🛒</div>
-        <h3>CTF Store</h3>
-        <p>Purchase exclusive tools, hints, and cosmetic items to enhance your hacking experience.</p>
-      </div>
-      <div class="feature">
-        <div class="feature-icon">👑</div>
-        <h3>VIP Membership</h3>
-        <p>Unlock premium features, exclusive challenges, and special events with our VIP membership.</p>
-      </div>
-      <div class="feature">
-        <div class="feature-icon">🔄</div>
-        <h3>Subscription</h3>
-        <p>Get access to a continuously updated stream of new challenges and learning materials.</p>
-      </div>
-    </section>
-
-    <section class="leaderboard">
-      <h2>Top Hackers</h2>
-      <ul class="leaderboard-list">
-        <li class="leaderboard-item">
-          <span>1. H4ck3r_Pr0</span>
-          <span>9500 pts</span>
-        </li>
-        <li class="leaderboard-item">
-          <span>2. ByteMaster</span>
-          <span>9200 pts</span>
-        </li>
-        <li class="leaderboard-item">
-          <span>3. CyberNinja</span>
-          <span>8800 pts</span>
-        </li>
-        <li class="leaderboard-item">
-          <span>4. CodeBreaker</span>
-          <span>8500 pts</span>
-        </li>
-        <li class="leaderboard-item">
-          <span>5. EncryptQueen</span>
-          <span>8200 pts</span>
-        </li>
-      </ul>
-    </section>
-  </main>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      // Add hover effect to nav items
-      const navItems = document.querySelectorAll('nav ul li a');
-      navItems.forEach(item => {
-        item.addEventListener('mouseenter', () => {
-          item.style.textShadow = '0 0 10px #64ffda';
+    </header>
+  
+    <main>
+      <section class="hero">
+        <h2>Domine a Cibersegurança com a RED SEC ACADEMY</h2>
+        <p>Adquira habilidades de ponta em hacking ético, segurança de redes e defesa cibernética com especialistas do setor. Participe de nossos programas de treinamento abrangentes e torne-se um profissional de cibersegurança.</p>
+        <a href="https://websim.ctfsite.com/courses" class="cta-button">Explore Nossos Cursos</a>
+      </section>
+  
+      <section class="features">
+        <div class="feature">
+          <div class="feature-icon">🛡️</div>
+          <h3>Currículo Abrangente</h3>
+          <p>Nossos cursos cobrem uma ampla gama de tópicos de cibersegurança, desde princípios básicos até técnicas avançadas usadas por profissionais da área.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">💻</div>
+          <h3>Laboratórios Práticos</h3>
+          <p>Pratique suas habilidades em ambientes simulados realistas, projetados para refletir cenários de cibersegurança do mundo real.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">🏆</div>
+          <h3>Certificações da Indústria</h3>
+          <p>Prepare-se para certificações de cibersegurança reconhecidas globalmente e avance em sua carreira com nossos programas de treinamento especializados.</p>
+        </div>
+      </section>
+  
+      <section class="course-preview">
+        <h2>Cursos em Destaque</h2>
+        <ul class="course-list">
+          <li class="course-item">
+            <div>
+              <h4>Fundamentos de Hacking Ético</h4>
+              <p>Aprenda o básico de hacking ético e testes de penetração</p>
+            </div>
+            <a href="https://websim.ctfsite.com/course/ethical-hacking-fundamentals" class="enroll-button">Inscreva-se</a>
+          </li>
+          <li class="course-item">
+            <div>
+              <h4>Fundamentos de Segurança de Rede</h4>
+              <p>Domine os princípios de segurança de redes de computadores</p>
+            </div>
+            <a href="https://websim.ctfsite.com/course/network-security-essentials" class="enroll-button">Inscreva-se</a>
+          </li>
+          <li class="course-item">
+            <div>
+              <h4>Análise Avançada de Malware</h4>
+              <p>Aprofunde-se na análise e mitigação de software malicioso</p>
+            </div>
+            <a href="https://websim.ctfsite.com/course/advanced-malware-analysis" class="enroll-button">Inscreva-se</a>
+          </li>
+        </ul>
+      </section>
+    </main>
+  
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const navItems = document.querySelectorAll('nav ul li a');
+        navItems.forEach(item => {
+          item.addEventListener('mouseenter', () => {
+            item.style.textDecoration = 'underline';
+          });
+          item.addEventListener('mouseleave', () => {
+            item.style.textDecoration = 'none';
+          });
         });
-        item.addEventListener('mouseleave', () => {
-          item.style.textShadow = 'none';
+  
+        const features = document.querySelectorAll('.feature');
+        const observerOptions = {
+          root: null,
+          rootMargin: '0px',
+          threshold: 0.1
+        };
+  
+        const observer = new IntersectionObserver((entries, observer) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.style.opacity = '1';
+              entry.target.style.transform = 'translateY(0)';
+              observer.unobserve(entry.target);
+            }
+          });
+        }, observerOptions);
+  
+        features.forEach(feature => {
+          feature.style.opacity = '0';
+          feature.style.transform = 'translateY(20px)';
+          feature.style.transition = 'opacity 0.5s ease-out, transform 0.5s ease-out';
+          observer.observe(feature);
+        });
+  
+        const courseItems = document.querySelectorAll('.course-item');
+        courseItems.forEach(item => {
+          item.addEventListener('mouseenter', () => {
+            item.style.backgroundColor = '#f9f9f9';
+          });
+          item.addEventListener('mouseleave', () => {
+            item.style.backgroundColor = 'transparent';
+          });
+        });
+  
+        const logo = document.querySelector('.logo');
+        logo.addEventListener('mouseenter', () => {
+          logo.style.transition = 'transform 0.5s ease';
+          logo.style.transform = 'rotate(360deg)';
+        });
+        logo.addEventListener('mouseleave', () => {
+          logo.style.transition = 'transform 0.5s ease';
+          logo.style.transform = 'rotate(0deg)';
         });
       });
-
-      // Animate features on scroll
-      const features = document.querySelectorAll('.feature');
-      const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1
-      };
-
-      const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-            observer.unobserve(entry.target);
-          }
-        });
-      }, observerOptions);
-
-      features.forEach(feature => {
-        feature.style.opacity = '0';
-        feature.style.transform = 'translateY(20px)';
-        feature.style.transition = 'opacity 0.5s ease-out, transform 0.5s ease-out';
-        observer.observe(feature);
-      });
-
-      // Add pulsing effect to CTA button
-      const ctaButton = document.querySelector('.cta-button');
-      setInterval(() => {
-        ctaButton.style.transform = 'scale(1.05)';
-        setTimeout(() => {
-          ctaButton.style.transform = 'scale(1)';
-        }, 200);
-      }, 2000);
-    });
-  </script>
-</body></html>
+    </script>
+  </body></html>
