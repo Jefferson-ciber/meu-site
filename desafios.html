@@ -184,21 +184,69 @@
     flex-wrap: wrap;
     gap: 15px;
   }
+  .standard-button {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 15px;
+    border-radius: 5px;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 500;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-transform: uppercase;
+  }
   .filter-button {
     background-color: #2c3e50;
     color: #e0e0e0;
     border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-family: 'Orbitron', sans-serif;
-    font-weight: 500;
-    letter-spacing: 1px;
-    transition: background-color 0.3s, color 0.3s;
   }
   .filter-button:hover, .filter-button.active {
     background-color: #ff3e3e;
     color: #fff;
+  }
+  .start-challenge {
+    background-color: #ff3e3e;
+    color: #fff;
+    border: none;
+    width: 100%;
+    margin-top: 15px;
+  }
+  .start-challenge:hover {
+    background-color: #ff0000;
+    box-shadow: 0 0 10px rgba(255, 62, 62, 0.5);
+    transform: translateY(-2px);
+  }
+  .flag-form {
+    margin-top: 20px;
+  }
+  .flag-form input {
+    padding: 10px;
+    width: calc(100% - 20px);
+    border-radius: 5px;
+    border: 2px solid #2c3e50;
+  }
+  .flag-form button {
+    margin-top: 10px;
+    background-color: #ff3e3e;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-family: 'Orbitron', sans-serif;
+    cursor: pointer;
+    height: 40px;
+    text-transform: uppercase;
+  }
+  .back-button {
+    background-color: #2c3e50;
+    color: #e0e0e0;
+    border: none;
+    height: 40px;
+  }
+  .back-button:hover {
+    background-color: #34495e;
   }
   .search-input {
     background-color: #1a1a1a;
@@ -210,6 +258,8 @@
     font-size: 14px;
     width: 250px;
     transition: border-color 0.3s;
+    height: 40px;
+    box-sizing: border-box;
   }
   .search-input:focus {
     outline: none;
@@ -217,6 +267,25 @@
   }
   .search-input::placeholder {
     color: #808080;
+  }
+  .challenge-page {
+    display: none;
+    text-align: left;
+    margin: 40px auto;
+    max-width: 600px;
+  }
+  .challenge-title {
+    font-size: 24px;
+    color: #ff3e3e;
+    margin-bottom: 10px;
+  }
+  .challenge-description {
+    font-size: 14px;
+    color: #b0b0b0;
+    margin-bottom: 15px;
+  }
+  .challenge-content {
+    margin-top: 15px;
   }
 </style>
 </head>
@@ -247,60 +316,38 @@
     
     <div class="filter-container">
       <input type="text" class="search-input" placeholder="Pesquisar desafios...">
-      <button class="filter-button active" data-difficulty="all">Todos</button>
-      <button class="filter-button" data-difficulty="easy">Fácil</button>
-      <button class="filter-button" data-difficulty="medium">Médio</button>
-      <button class="filter-button" data-difficulty="hard">Difícil</button>
+      <button class="filter-button standard-button active" data-difficulty="all">Todos</button>
+      <button class="filter-button standard-button" data-difficulty="easy">Fácil</button>
+      <button class="filter-button standard-button" data-difficulty="medium">Médio</button>
+      <button class="filter-button standard-button" data-difficulty="hard">Difícil</button>
     </div>
 
-    <div class="challenges-grid">
-      <div class="challenge-card" data-difficulty="easy">
+    <div class="challenges-grid" id="challenges-grid">
+    </div>
+
+    <div id="challenge-pages">
+      <div class="challenge-page" id="challenge-quebra-de-senha" style="display: none;">
         <h2 class="challenge-title">Quebra de Senha</h2>
         <p class="challenge-description">Decifre uma senha criptografada usando técnicas de força bruta e engenharia reversa.</p>
-        <div class="challenge-info">
-          <span class="challenge-difficulty easy">Fácil</span>
-          <span>Pontos: 100</span>
+        <div class="challenge-content">
+          <p>Uma senha importante foi criptografada usando um algoritmo simples. Sua tarefa é quebrar esta senha.</p>
+          <p>Dica: A senha contém 4 dígitos numéricos.</p>
+          <p>Senha criptografada: <strong id="encrypted-password">8912</strong></p>
+          <div class="password-cracker">
+            <input type="text" id="password-input" placeholder="Digite a senha" maxlength="4">
+            <button id="crack-button" class="standard-button">Quebrar</button>
+          </div>
+          <p id="feedback"></p>
+          <div id="flag-container" style="display: none;">
+            <p>Parabéns! Você quebrou a senha. Aqui está a flag:</p>
+            <p class="flag">REDFLAG{Cr4ck3d!}</p>
+          </div>
         </div>
-      </div>
-      <div class="challenge-card" data-difficulty="medium">
-        <h2 class="challenge-title">Exploração de XSS</h2>
-        <p class="challenge-description">Identifique e explore uma vulnerabilidade de Cross-Site Scripting em um aplicativo web.</p>
-        <div class="challenge-info">
-          <span class="challenge-difficulty medium">Médio</span>
-          <span>Pontos: 250</span>
-        </div>
-      </div>
-      <div class="challenge-card" data-difficulty="hard">
-        <h2 class="challenge-title">Análise de Malware</h2>
-        <p class="challenge-description">Analise um arquivo malicioso e determine sua funcionalidade e métodos de propagação.</p>
-        <div class="challenge-info">
-          <span class="challenge-difficulty hard">Difícil</span>
-          <span>Pontos: 500</span>
-        </div>
-      </div>
-      <div class="challenge-card" data-difficulty="medium">
-        <h2 class="challenge-title">Forense Digital</h2>
-        <p class="challenge-description">Investigue um sistema comprometido e recupere evidências críticas de atividades maliciosas.</p>
-        <div class="challenge-info">
-          <span class="challenge-difficulty medium">Médio</span>
-          <span>Pontos: 300</span>
-        </div>
-      </div>
-      <div class="challenge-card" data-difficulty="hard">
-        <h2 class="challenge-title">Criptografia Avançada</h2>
-        <p class="challenge-description">Quebre um esquema de criptografia personalizado usando análise criptográfica e matemática.</p>
-        <div class="challenge-info">
-          <span class="challenge-difficulty hard">Difícil</span>
-          <span>Pontos: 450</span>
-        </div>
-      </div>
-      <div class="challenge-card" data-difficulty="medium">
-        <h2 class="challenge-title">Segurança de Rede</h2>
-        <p class="challenge-description">Configure e proteja uma rede virtual contra várias ameaças cibernéticas comuns.</p>
-        <div class="challenge-info">
-          <span class="challenge-difficulty medium">Médio</span>
-          <span>Pontos: 350</span>
-        </div>
+        <form class="flag-form">
+          <input type="text" placeholder="Enter flag: REDFLAG{xxxxxxxx}" required>
+          <button type="submit" class="standard-button">Submit Flag</button>
+        </form>
+        <button class="back-button standard-button">Back to Challenges</button>
       </div>
     </div>
   </main>
@@ -317,7 +364,6 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      // Matrix rain effect
       const canvas = document.getElementById('matrix-rain');
       const ctx = canvas.getContext('2d');
 
@@ -353,7 +399,170 @@
 
       setInterval(draw, 35);
 
-      // Challenge card hover effect
+      const challenges = [
+        {
+          title: "Quebra de Senha",
+          description: "Decifre uma senha criptografada usando técnicas de força bruta e engenharia reversa.",
+          difficulty: "easy",
+          points: 100
+        },
+        {
+          title: "Exploração de XSS",
+          description: "Identifique e explore uma vulnerabilidade de Cross-Site Scripting em um aplicativo web.",
+          difficulty: "medium",
+          points: 250
+        },
+        {
+          title: "Análise de Malware",
+          description: "Analise um arquivo malicioso e determine sua funcionalidade e métodos de propagação.",
+          difficulty: "hard",
+          points: 500
+        },
+        {
+          title: "Forense Digital",
+          description: "Investigue um sistema comprometido e recupere evidências críticas de atividades maliciosas.",
+          difficulty: "medium",
+          points: 300
+        },
+        {
+          title: "Criptografia Avançada",
+          description: "Quebre um esquema de criptografia personalizado usando análise criptográfica e matemática.",
+          difficulty: "hard",
+          points: 450
+        },
+        {
+          title: "Segurança de Rede",
+          description: "Configure e proteja uma rede virtual contra várias ameaças cibernéticas comuns.",
+          difficulty: "medium",
+          points: 350
+        },
+        {
+          title: "Exploração de Buffer Overflow",
+          description: "Explore uma vulnerabilidade de buffer overflow para ganhar controle de um sistema remoto.",
+          difficulty: "hard",
+          points: 550
+        },
+        {
+          title: "Esteganografia",
+          description: "Descubra mensagens ocultas em imagens usando técnicas de esteganografia.",
+          difficulty: "easy",
+          points: 150
+        },
+        {
+          title: "Engenharia Social",
+          description: "Desenvolva e execute uma campanha de phishing simulada para testar a conscientização dos usuários.",
+          difficulty: "medium",
+          points: 300
+        }
+      ];
+
+      function createChallengePage(challenge) {
+        return `
+          <div class="challenge-page" id="challenge-${challenge.title.replace(/\s+/g, '-').toLowerCase()}" style="display: none;">
+            <h2 class="challenge-title">${challenge.title}</h2>
+            <p class="challenge-description">${challenge.description}</p>
+            <div class="challenge-content">
+              <p>Challenge content goes here. Solve the challenge to find the flag!</p>
+            </div>
+            <form class="flag-form">
+              <input type="text" placeholder="Enter flag: REDFLAG{xxxxxxxx}" required>
+              <button type="submit" class="standard-button">Submit Flag</button>
+            </form>
+            <button class="back-button standard-button">Back to Challenges</button>
+          </div>
+        `;
+      }
+
+      function createChallengeCard(challenge) {
+        return `
+          <div class="challenge-card" data-difficulty="${challenge.difficulty}">
+            <h2 class="challenge-title">${challenge.title}</h2>
+            <p class="challenge-description">${challenge.description}</p>
+            <div class="challenge-info">
+              <span class="challenge-difficulty ${challenge.difficulty}">${challenge.difficulty.charAt(0).toUpperCase() + challenge.difficulty.slice(1)}</span>
+              <span>Pontos: ${challenge.points}</span>
+            </div>
+            <button class="start-challenge standard-button" data-challenge="${challenge.title.replace(/\s+/g, '-').toLowerCase()}">Iniciar Desafio</button>
+          </div>
+        `;
+      }
+
+      function renderChallenges() {
+        const challengesGrid = document.getElementById('challenges-grid');
+        challengesGrid.innerHTML = challenges.map(createChallengeCard).join('');
+      }
+
+      function renderChallengePages() {
+        const challengePagesContainer = document.getElementById('challenge-pages');
+        challengePagesContainer.innerHTML = challenges.map(createChallengePage).join('');
+      }
+
+      function initializePasswordChallenge() {
+        const crackButton = document.getElementById('crack-button');
+        const passwordInput = document.getElementById('password-input');
+        const feedback = document.getElementById('feedback');
+        const flagContainer = document.getElementById('flag-container');
+
+        if (crackButton && passwordInput && feedback && flagContainer) {
+          const passwordChallenge = {
+            encryptedPassword: '8912',
+            realPassword: '1234',
+            encrypt: function(password) {
+              return password.split('').map(digit => (parseInt(digit) * 2 + 1) % 10).join('');
+            },
+            checkPassword: function(input) {
+              return this.encrypt(input) === this.encryptedPassword;
+            }
+          };
+
+          crackButton.addEventListener('click', function() {
+            const input = passwordInput.value;
+
+            if (passwordChallenge.checkPassword(input)) {
+              feedback.textContent = 'Senha correta!';
+              feedback.style.color = '#4CAF50';
+              flagContainer.style.display = 'block';
+            } else {
+              feedback.textContent = 'Senha incorreta. Tente novamente.';
+              feedback.style.color = '#F44336';
+              flagContainer.style.display = 'none';
+            }
+          });
+        }
+      }
+
+      function showChallengePage(challengeId) {
+        document.getElementById('challenges-grid').style.display = 'none';
+        document.querySelector('.filter-container').style.display = 'none';
+        const challengePage = document.getElementById(`challenge-${challengeId}`);
+        if (challengePage) {
+          challengePage.style.display = 'block';
+          if (challengeId === 'quebra-de-senha') {
+            initializePasswordChallenge();
+          }
+        }
+      }
+
+      function hideChallengePage(challengeId) {
+        document.getElementById(`challenge-${challengeId}`).style.display = 'none';
+        document.getElementById('challenges-grid').style.display = 'grid';
+        document.querySelector('.filter-container').style.display = 'flex';
+      }
+
+      document.addEventListener('click', function(e) {
+        if (e.target.classList.contains('start-challenge')) {
+          const challengeId = e.target.getAttribute('data-challenge');
+          showChallengePage(challengeId);
+        }
+        if (e.target.classList.contains('back-button')) {
+          const challengePage = e.target.closest('.challenge-page');
+          hideChallengePage(challengePage.id.replace('challenge-', ''));
+        }
+      });
+
+      renderChallenges();
+      renderChallengePages();
+
       const challengeCards = document.querySelectorAll('.challenge-card');
       challengeCards.forEach(card => {
         card.addEventListener('mouseover', () => {
@@ -364,13 +573,28 @@
           card.style.transform = 'translateY(0) scale(1)';
           card.style.boxShadow = 'none';
         });
-        card.addEventListener('click', () => {
-          // Implement challenge details page navigation here
-          alert('Challenge details page coming soon!');
+        card.addEventListener('click', (e) => {
+          if (!e.target.classList.contains('start-challenge')) {
+            const challengeId = card.querySelector('.start-challenge').getAttribute('data-challenge');
+            showChallengePage(challengeId);
+          }
         });
       });
 
-      // Filter functionality
+      document.addEventListener('submit', function(e) {
+        if (e.target.classList.contains('flag-form')) {
+          e.preventDefault();
+          const flagInput = e.target.querySelector('input[type="text"]');
+          const submittedFlag = flagInput.value.trim();
+          if (submittedFlag.match(/^REDFLAG{.{8}}$/)) {
+            alert('Congratulations! You found the correct flag!');
+          } else {
+            alert('Incorrect flag. Try again!');
+          }
+          flagInput.value = '';
+        }
+      });
+
       const filterButtons = document.querySelectorAll('.filter-button');
       const searchInput = document.querySelector('.search-input');
 
@@ -378,13 +602,10 @@
         const activeFilter = document.querySelector('.filter-button.active').dataset.difficulty;
         const searchTerm = searchInput.value.toLowerCase();
 
-        challengeCards.forEach(card => {
-          const cardDifficulty = card.dataset.difficulty;
-          const cardTitle = card.querySelector('.challenge-title').textContent.toLowerCase();
-          const cardDescription = card.querySelector('.challenge-description').textContent.toLowerCase();
-
-          const matchesDifficulty = activeFilter === 'all' || cardDifficulty === activeFilter;
-          const matchesSearch = cardTitle.includes(searchTerm) || cardDescription.includes(searchTerm);
+        challenges.forEach((challenge, index) => {
+          const card = document.querySelectorAll('.challenge-card')[index];
+          const matchesDifficulty = activeFilter === 'all' || challenge.difficulty === activeFilter;
+          const matchesSearch = challenge.title.toLowerCase().includes(searchTerm) || challenge.description.toLowerCase().includes(searchTerm);
 
           if (matchesDifficulty && matchesSearch) {
             card.style.display = 'block';
@@ -404,7 +625,6 @@
 
       searchInput.addEventListener('input', filterChallenges);
 
-      // Initial filter
       filterChallenges();
     });
   </script>
