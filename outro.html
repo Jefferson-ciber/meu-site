@@ -1,0 +1,150 @@
+<html><head><base href="/index.html">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RED SEC ACADEMY - home</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  </head>
+  <body>
+    <header>
+      <div class="header-content">
+        <div class="logo-container">
+          <img src="/img/resec.jpg" alt="Logo da RED SEC ACADEMY" class="logo" width="50" height="50">
+          <h1>RED SEC ACADEMY</h1>
+        </div>
+        <nav>
+          <ul>
+            <li><a href="https://redsecacademy.com">Início</a></li>
+            <li><a href="https://redsecacademy.com">Cursos</a></li>
+            <li><a href="https://redsecacademy.com">Desafios</a></li>
+            <li><a href="https://redsecacademy.com">Sobre</a></li>
+            <li><a href="https://redsecacademy.com">Contato</a></li>
+          </ul>
+        </nav>
+        <div class="user-menu">
+          <button class="user-menu-button">
+            <img src="/img/euu.jpg" alt="Foto de perfil" width="40" height="40">
+            <span>Jefferson marques da silva</span>
+          </button>
+          <div class="user-menu-content">
+            <a href="https://redsecacademy.com">Meu Perfil</a>
+            <a href="https://redsecacademy.com">Editar Perfil</a>
+            <a href="https://redsecacademy.com">Caixa de Entrada</a>
+            <a href="https://redsecacademy.com">Configurações</a>
+            <a href="https://redsecacademy.com">Ajuda</a>
+            <a href="https://redsecacademy.com">Sair</a>
+          </div>
+        </div>
+      </div>
+    </header>
+  
+    <main>
+      <section class="hero">
+        <h2>Domine a Cibersegurança com a RED SEC ACADEMY</h2>
+        <p>Adquira habilidades de ponta em hacking ético, segurança de redes e defesa cibernética com especialistas do setor. Participe de nossos programas de treinamento abrangentes e torne-se um profissional de cibersegurança.</p>
+        <a href="https://redsecacademy.com" class="cta-button">Explore Nossos Cursos</a>
+      </section>
+  
+      <section class="features">
+        <div class="feature">
+          <div class="feature-icon">🛡️</div>
+          <h3>Currículo Abrangente</h3>
+          <p>Nossos cursos cobrem uma ampla gama de tópicos de cibersegurança, desde princípios básicos até técnicas avançadas usadas por profissionais da área.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">💻</div>
+          <h3>Laboratórios Práticos</h3>
+          <p>Pratique suas habilidades em ambientes simulados realistas, projetados para refletir cenários de cibersegurança do mundo real.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">🏆</div>
+          <h3>Certificações da Indústria</h3>
+          <p>Prepare-se para certificações de cibersegurança reconhecidas globalmente e avance em sua carreira com nossos programas de treinamento especializados.</p>
+        </div>
+      </section>
+  
+      <section class="course-preview">
+        <h2>Cursos em Destaque</h2>
+        <ul class="course-list">
+          <li class="course-item">
+            <div>
+              <h4>Fundamentos de Hacking Ético</h4>
+              <p>Aprenda o básico de hacking ético e testes de penetração</p>
+            </div>
+            <a href="https://redsecacademy.com" class="enroll-button">Inscreva-se</a>
+          </li>
+          <li class="course-item">
+            <div>
+              <h4>Fundamentos de Segurança de Rede</h4>
+              <p>Domine os princípios de segurança de redes de computadores</p>
+            </div>
+            <a href="https://redsecacademy.com" class="enroll-button">Inscreva-se</a>
+          </li>
+          <li class="course-item">
+            <div>
+              <h4>Análise Avançada de Malware</h4>
+              <p>Aprofunde-se na análise e mitigação de software malicioso</p>
+            </div>
+            <a href="https://redsecacademy.com" class="enroll-button">Inscreva-se</a>
+          </li>
+        </ul>
+      </section>
+    </main>
+  
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const navItems = document.querySelectorAll('nav ul li a');
+        navItems.forEach(item => {
+          item.addEventListener('mouseenter', () => {
+            item.style.textDecoration = 'underline';
+          });
+          item.addEventListener('mouseleave', () => {
+            item.style.textDecoration = 'none';
+          });
+        });
+  
+        const features = document.querySelectorAll('.feature');
+        const observerOptions = {
+          root: null,
+          rootMargin: '0px',
+          threshold: 0.1
+        };
+  
+        const observer = new IntersectionObserver((entries, observer) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.style.opacity = '1';
+              entry.target.style.transform = 'translateY(0)';
+              observer.unobserve(entry.target);
+            }
+          });
+        }, observerOptions);
+  
+        features.forEach(feature => {
+          feature.style.opacity = '0';
+          feature.style.transform = 'translateY(20px)';
+          feature.style.transition = 'opacity 0.5s ease-out, transform 0.5s ease-out';
+          observer.observe(feature);
+        });
+  
+        const courseItems = document.querySelectorAll('.course-item');
+        courseItems.forEach(item => {
+          item.addEventListener('mouseenter', () => {
+            item.style.backgroundColor = '#f9f9f9';
+          });
+          item.addEventListener('mouseleave', () => {
+            item.style.backgroundColor = 'transparent';
+          });
+        });
+  
+        const logo = document.querySelector('.logo');
+        logo.addEventListener('mouseenter', () => {
+          logo.style.transition = 'transform 0.5s ease';
+          logo.style.transform = 'rotate(360deg)';
+        });
+        logo.addEventListener('mouseleave', () => {
+          logo.style.transition = 'transform 0.5s ease';
+          logo.style.transform = 'rotate(0deg)';
+        });
+      });
+      </script>
+      </body></html>
